@@ -3,6 +3,7 @@ import UserCard from './UserCard';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from './utils/userSlice';
+import ProfileCard from './Components/ProfileCard';
 
 const EditProfile = ({user}) =>{
     const [firstName,setFirstName] = useState(user.firstName);
@@ -11,6 +12,7 @@ const EditProfile = ({user}) =>{
     const [age,setAge] = useState(user.age || " ");
     const [gender,setGender] = useState(user.gender);
     const [about,setAbout] = useState(user.about);
+    const [skills,setSkills] = useState(user.skills || " ");
     const [err,setError] = useState(" ")
 
     const [showTost,setShowTost] = useState(false)
@@ -21,7 +23,7 @@ const EditProfile = ({user}) =>{
             const res = await axios.patch(
                     "http://localhost:3000/profile/edit"
                 ,{
-                    firstName,lastName,photoURl,age,gender,about
+                    firstName,lastName,photoURl,age,gender,about,skills
                 },{
                     withCredentials:true,
                 }
@@ -39,39 +41,43 @@ const EditProfile = ({user}) =>{
     return (
         <>
            <div className="flex flex-col md:flex-row justify-center gap-10 mt-10 ">
-                <div className="card-body bg-base-300 max-w-100">
+                <div className="editProfile card-body bg-base-300 max-w-100 rounded">
                     <h2 className="card-title px-30">Edit Profile</h2>
                     <fieldset className="fieldset">
-                            <legend className="fieldset-legend">firstName</legend>
-                        <input type="text" className="input" placeholder="Enter firstName" onChange={(e)=>{setFirstName(e.target.value)}}/>
+                            <legend className="fieldset-legend">FirstName</legend>
+                        <input type="inputField text" className="input" placeholder="Enter firstName" onChange={(e)=>{setFirstName(e.target.value)}}/>
                     </fieldset>
                     <fieldset className="fieldset">
-                            <legend className="fieldset-legend">lastName</legend>
-                        <input type="text" className="input" placeholder="Enter lastName" onChange={(e)=>{setLastName(e.target.value)}}/>
+                            <legend className="fieldset-legend">LastName</legend>
+                        <input type="inputField text" className="input" placeholder="Enter lastName" onChange={(e)=>{setLastName(e.target.value)}}/>
                     </fieldset>
                     <fieldset className="fieldset">
-                            <legend className="fieldset-legend">age</legend>
-                        <input type="text" className="input" placeholder="Enter Age" onChange={(e)=>{setAge(e.target.value)}}/>
+                            <legend className="fieldset-legend">Age</legend>
+                        <input type="inputField text" className="input" placeholder="Enter Age" onChange={(e)=>{setAge(e.target.value)}}/>
                     </fieldset>
                     <fieldset className="fieldset">
                             <legend className="fieldset-legend">Gender</legend>
-                        <input type="text" className="input" placeholder="Enter Gender" onChange={(e)=>{setGender(e.target.value)}}/>
+                        <input type="inputField text" className="input" placeholder="Enter Gender" onChange={(e)=>{setGender(e.target.value)}}/>
                     </fieldset>
                     <fieldset className="fieldset">
                             <legend className="fieldset-legend">About</legend>
-                        <input type="text" className="input" placeholder="Enter About" onChange={(e)=>{setAbout(e.target.value)}}/>
+                        <input type="inputField text" className="input" placeholder="Enter About" onChange={(e)=>{setAbout(e.target.value)}}/>
                     </fieldset>
                     <fieldset className="fieldset">
                             <legend className="fieldset-legend">PhotoURL</legend>
-                        <input type="text" className="input" placeholder="Enter PhotoURL (Url only)" onChange={(e)=>{setPhotoURl(e.target.value)}}/>
+                        <input type="inputField text" className="input" placeholder="Enter PhotoURL (Url only)" onChange={(e)=>{setPhotoURl(e.target.value)}}/>
+                    </fieldset>
+                    <fieldset className="fieldset">
+                            <legend className="fieldset-legend">Skills</legend>
+                        <input type="inputField text" className="input" placeholder="Enter Skill to Add" onChange={(e)=>{setSkills(e.target.value)}}/>
                     </fieldset>
                     <p>{err}</p>
                     <div className="justify-end card-actions">
-                        <button className="btn btn-primary" onClick={saveProfile}>Save</button>
+                        <button className="save-btn btn btn-primary" onClick={saveProfile}>Save</button>
                     </div>
                 </div>
                 <div className="mt-2">
-                    <UserCard user={{firstName,lastName,photoURl,age,gender,about}}/>
+                    <ProfileCard user={{firstName,lastName,photoURl,age,gender,about}}/>
                     {showTost&&
                         <div className="toast toast-top toast-center">
                             <div className="alert alert-success">

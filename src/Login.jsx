@@ -47,6 +47,7 @@ const Login = () =>{
 
     return (
         <>
+        <div className='min-h-screen'>
             <div className="card w-96 bg-base-300 card-md shadow-sm mx-auto mt-10">
             <div className="card-body">
                 <h2 className="card-title px-30">{isLoginForm?"SignUp":"Login"}</h2>
@@ -75,6 +76,7 @@ const Login = () =>{
                 <button className="btn btn-primary" onClick={isLoginForm ? handleSignUp:handleLogin}>Login</button>
                 </div>
                 <p onClick={()=>setIsLoginForm(isLoginForm?false:true)}>{isLoginForm?"Already Signed Up?":"New User?"}</p>
+            </div>
             </div>
             </div>
         </>

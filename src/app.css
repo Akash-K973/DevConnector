@@ -1,2 +1,94 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+h2,legend,div{
+    color: white;
+}
+
+.save-btn,.send-chat-btn{
+    background-color: #1a1a2e;
+}
+
+.save-btn:hover{
+    background-color: rgb(87, 85, 235);
+}
+
+.menu{
+    background-color: #1a1a2e;
+}
+.editProfile{
+    background: #1a1a2e;
+}
+
+.connection-card,.request-card{
+    background-color: #22162b;
+    box-shadow: 0px 4px 8px black;
+}
+
+.connection-btn,.reject-con-btn,.accept-con-btn{
+    background-color: #451f55;
+}
+
+.connection-btn:hover{
+    background-color: rgb(89, 86, 238) ;
+}
+
+.accept-con-btn:hover{
+    background-color:rgb(228, 44, 142);
+}
+
+.reject-con-btn:hover{
+    background-color:rgb(89, 86, 238);
+}
+
+.userCard{
+    background: #1e1e2f;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #2c2c3a;
+}
+
+.userCard:hover{
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.input{
+    background: #2a2a3d;
+    border: 1px solid #3a3a50;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.input:focus{
+    border-color: #6c63ff;
+    outline: none;
+}
+
+.ignore_btn{
+    background: #222222;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+    box-shadow: 0 4px 6px -2px rgba(0,0,0,0.3);
+}
+
+.ignore_btn:hover{
+    background: #2c2c2c;
+}
+
+.accept_btn{
+    background: rebeccapurple;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+    box-shadow: 0 4px 5px -2px #8a2be2;
+}
+
+.accept_btn:hover{
+    background:#8a2be2;
+}
+

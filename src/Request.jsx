@@ -34,28 +34,38 @@ const Request = () => {
     useEffect(()=>{
         fetchRequests();
     },[]);
-    if(!requests) return <h1 className="text-center">No request</h1>;
+    if(!requests) return (
+                        <div className="min-h-screen text-center my-10">
+                        <h1 className="text-center">No request</h1>
+                        </div>
+                    );
 
-    if(requests.length==0) return <h1>No request found</h1>
+    if(requests.length==0) return (
+                        <div className="min-h-screen text-center my-10">
+                            <h1 className="text-center">No request</h1>
+                        </div>
+                        )
     return (
         <>
-            <div className="text-center my-10">
+            <div className="min-h-screen text-center my-10">
                 <h1 className="text-bold white text-3xl">Requests</h1>
                 {requests.map((request)=>{
                     const {_id,firstName,lastName,photoURl,about,gender,age}=request.fromUserId;
                     return(
-                        <div key={request._id}className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
+                        <div key={request._id}className="request-card flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto h-45">
                             <div className="w-50 h-50 rounded-full">
-                                <img src={photoURl} alt="photo"/>
+                                <img className="outline outline-2 outline-violet-400 outline-offset-6 rounded-full" src={photoURl} alt="photo"/>
                             </div>
-                            <div className="text-left mx-4">
-                                <h2 className="font-bold text-xl">{firstName + " " + lastName}</h2>
-                                {age && gender && <p>{age+" "+gender}</p>}
-                            <p>{about}</p>
-                            </div>  
-                            <div>
-                                <button className="btn btn-primary mx-2" onClick={()=>reviewRequest("rejected",request._id)}>reject</button>
-                                <button className="btn btn-secondary mx-2" onClick={()=>reviewRequest("accepted",request._id)}>accept</button>
+                            <div className="flex justify-between w-2/3">
+                                <div className="text-left mx-4">
+                                    <h2 className="font-bold text-xl">{firstName + " " + lastName}</h2>
+                                    {age && gender && <p>{age+" "+gender}</p>}
+                                <p>{about}</p>
+                                </div>  
+                                <div className="flex flex-col">
+                                    <button className="reject-con-btn btn btn-primary mx-2 " onClick={()=>reviewRequest("rejected",request._id)}>reject</button>
+                                    <button className="accept-con-btn btn btn-secondary mx-2 mt-2" onClick={()=>reviewRequest("accepted",request._id)}>accept</button>
+                                </div>
                             </div>
                         </div>
                     )
