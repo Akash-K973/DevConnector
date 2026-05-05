@@ -69,7 +69,7 @@ const Login = () =>{
                 </fieldset>
                 <fieldset className="fieldset">
                      <legend className="fieldset-legend">Password</legend>
-                    <input type="text" className="input" placeholder="Enter Password" onChange={(e)=>{setPassword(e.target.value)}}/>
+                    <input type="password" className="input" placeholder="Enter Password" onChange={(e)=>{setPassword(e.target.value)}}/>
                 </fieldset>
                 <p>{err}</p>
                 <div className="justify-end card-actions">

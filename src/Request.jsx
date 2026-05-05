@@ -53,7 +53,7 @@ const Request = () => {
                     const {_id,firstName,lastName,photoURl,about,gender,age}=request.fromUserId;
                     return(
                         <div key={request._id}className="request-card flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto h-45">
-                            <div className="w-50 h-50 rounded-full">
+                            <div className="w-30 h-40 rounded-full">
                                 <img className="outline outline-2 outline-violet-400 outline-offset-6 rounded-full" src={photoURl} alt="photo"/>
                             </div>
                             <div className="flex justify-between w-2/3">
