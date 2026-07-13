@@ -13,6 +13,7 @@ const NavBar = () => {
       await axios.post("http://localhost:3000/logout",{},{
         withCredential:true
       });
+      
       dispatch(removeUser());
       navigate("/login");
     }

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequests } from "./utils/requestSlice";
+import Loading from "./Components/preLoader";
 
 const Request = () => {
     const dispatch = useDispatch();
@@ -37,7 +38,9 @@ const Request = () => {
     if(!requests) return (
                         <div className="min-h-screen text-center my-10">
                         <h1 className="text-center">No request</h1>
+                        <Loading/>
                         </div>
+                        
                     );
 
     if(requests.length==0) return (

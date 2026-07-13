@@ -9,7 +9,7 @@ const feedSlice = createSlice({
         },
         removeFeed:(state,action)=>{
             const newarray = state.filter((user)=>user._id!=action.payload)
-            return newrray;
+            return newarray;
         }
     }
 })

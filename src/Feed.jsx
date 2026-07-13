@@ -1,18 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UserCard from './UserCard'
 import axios from "axios";
 import {addFeed , removeFeed} from "./utils/feedSlice"
 import ProfileCard from "./Components/ProfileCard";
 import InfoCard from "./Components/InfoCard";
+import Loading from "./Components/preLoader";
 
 const Feed = () =>{
     const user = useSelector((store)=>store.user);
-    const feed = useSelector((store)=>store.feed)
+    const feed = useSelector((store)=>store.feed);
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+    
     const getFeed = async() =>{
-        if(feed) return;
+        if(feed) {
+            setLoading(false);
+            return;
+        }  
         try{
+            setLoading(true);
             const res = await axios.get("http://localhost:3000/feed",{
                 withCredentials:true
             });
@@ -21,13 +28,16 @@ const Feed = () =>{
         catch(err){
             console.log(err.message)
         }
+        finally{
+            setLoading(false);
+        }
     }
     
     useEffect(()=>{
         getFeed();
     },[])
     
-    if(!feed) return <h1>No more feed</h1>;
+    if(!feed) return <Loading/>;
 
     if(feed.length<0) return <h1>No More Users</h1>;
         

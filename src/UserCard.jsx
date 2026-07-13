@@ -1,15 +1,20 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeFeed } from "./utils/feedSlice";
+import Loading from "./Components/preLoader";
+import { useState } from "react";
 
 const UserCard = ({user}) =>{
-  if(!user) return;
+  const [loading,setLoading] = useState(true);
+  if(!user){
+    return;
+  }
     const dispatch = useDispatch();
     //console.log(user);
     const {_id,firstName,lastName,photoURl,age,gender,about,skills} = user;
     const handleSendRequest = async (status,userId) =>{
       try{
-        const res = axios.post("http://localhost:3000/sendConnectionRequest/send/"+status+"/"+userId,{},{
+        const res = await axios.post("http://localhost:3000/sendConnectionRequest/send/"+status+"/"+userId,{},{
           withCredentials:true,
         });
         dispatch(removeFeed(userId))
@@ -18,7 +23,7 @@ const UserCard = ({user}) =>{
 
       }
     }
-    if(!user) return <h1>No more</h1>
+    if(!user) return <Loading/>
     return (
 <div className="userCard flex justify-center items-center card bg-base-300 w-96 shadow-sm">
   <figure className="h-60 w-60">
